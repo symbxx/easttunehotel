@@ -1,0 +1,14 @@
+{if $ext == 'php'}
+<div>{$code}</div>
+{else /}
+<style>
+pre {
+	border: 0;
+	background: white;
+	padding:0;
+}
+</style>
+<pre>
+<code class="language-{$ext}">{$code} </code>
+</pre>
+{/if}

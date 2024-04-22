@@ -1,0 +1,331 @@
+<form id="add-form" role="form" data-toggle="validator" method="POST" action="">
+    <div class="panel panel-default panel-intro">
+        <div class="panel-heading">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#first" data-toggle="tab">基础选项</a></li>
+                <li><a href="#second" data-toggle="tab">其他可选项</a></li>
+            </ul>
+        </div>
+        <div class="panel-body">
+            <div id="myTabContent" class="tab-content">
+                <!--基础选项-->
+                <div class="tab-pane fade active in" id="first">
+                    <div class="row">
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Name')}:</label>
+                            <div>
+                                <input id="c-name" class="form-control" name="row[name]" type="text"
+                                    value="{$row.name??''}">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Addon')}:</label>
+                            <div>
+                                <select id="c-addon" class="form-control selectpicker" name="row[addon]"
+                                    data-rule="required">
+                                    {foreach name="addonList" item="vo"}
+                                    <option value="{$key}" {in name="key" value="$row.addon??$Request.get.addon" }selected{/in}>{$vo}
+                                    </option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Mtable')}:</label>
+                            <div>
+                                <input id="c-mtable" data-rule="required" class="form-control" name="row[mtable]"
+                                    data-role="autocomplete"
+                                    data-autocomplete-options='{"url":"{:url("/addondev/gen/tables")}"}' type="text"
+                                    placeholder="不带前缀的表名" value="{$row.mtable??''}">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Controller')}:</label>
+                            <div>
+                                <input id="c-controller" data-rule="required" class="form-control"
+                                    name="row[controller]" type="text" placeholder="不带命名空间的类名"
+                                    value="{$row.controller??''}">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Model')}:</label>
+                            <div>
+                                <input id="c-model" class="form-control" name="row[model]" type="text"
+                                    placeholder="不带命名空间的类名" value="{$row.model??''}">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Menu_switch')}:</label>
+                            <div>
+                                <select id="c-menu_switch" class="form-control selectpicker" name="row[menu_switch]">
+                                    {foreach name="menuSwitchList" item="vo"}
+                                    <option value="{$key}" {in name="key" value="$row.menu_switch??1" }selected{/in}>
+                                        {$vo}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Delete_switch')}:</label>
+                            <div>
+                                <select id="c-delete_switch" class="form-control selectpicker"
+                                    name="row[delete_switch]">
+                                    {foreach name="deleteSwitchList" item="vo"}
+                                    <option value="{$key}" {in name="key" value="$row.delete_switch??0" }selected{/in}>
+                                        {$vo}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Import_switch')}:</label>
+                            <div>
+
+                                <select id="c-import_switch" class="form-control selectpicker"
+                                    name="row[import_switch]">
+                                    {foreach name="importSwitchList" item="vo"}
+                                    <option value="{$key}" {in name="key" value="$row.import_switch??0" }selected{/in}>
+                                        {$vo}</option>
+                                    {/foreach}
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Local_switch')}:</label>
+                            <div>
+
+                                <select id="c-local_switch" class="form-control selectpicker"
+                                    name="row[local_switch]">
+                                    {foreach name="localSwitchList" item="vo"}
+                                    <option value="{$key}" {in name="key" value="$row.local_switch??1" }selected{/in}>
+                                        {$vo}</option>
+                                    {/foreach}
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Tree_switch')}:</label>
+                            <div>
+
+                                <select id="c-tree_switch" class="form-control selectpicker" name="row[tree_switch]">
+                                    {foreach name="treeSwitchList" item="vo"}
+                                    <option value="{$key}" {in name="key" value="$row.tree_switch??0" }selected{/in}>
+                                        {$vo}</option>
+                                    {/foreach}
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Headingfilterfield')}:</label>
+                            <div>
+                                <input id="c-headingfilterfield" class="form-control" type="text"
+                                    name="row[headingfilterfield]" value="{$row.headingfilterfield??''}"
+                                    placeholder="选项卡字段，默认是status">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Tagcontroller')}:</label>
+                            <div>
+                                <input id="c-tagcontroller" class="form-control" name="row[tagcontroller]" type="text"
+                                    value="{$row.tagcontroller??''}" placeholder="能生成autocomplete结果的前台控制器">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">{:__('Fields')}:</label>
+                        <div>
+                            <input id="c-fields" class="form-control" name="row[fields]" type="text"
+                                placeholder="模型显示的字段，半角逗号分隔">
+                        </div>
+                    </div>
+                    <div class="alert alert-warning" role="alert">多个参数值必须换行输入同一行代表一个同一表的关联参数</div>
+                    <div class="row">
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Relation')}:</label>
+                            <div>
+                                <textarea id="c-relation" class="form-control " rows="5" name="row[relation]" cols="50"
+                                    value="{$row.fields??''}"
+                                    placeholder="不带前缀的表名，多个关联模型换行输入">{$row.relation??''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Relationmodel')}:</label>
+                            <div>
+                                <textarea id="c-relationmodel" class="form-control " rows="5" name="row[relationmodel]"
+                                    cols="50"
+                                    placeholder="留空表示当前插件的模型；插件名.模型名:表是插件名下的模型；模型名表示框架本身的模型；多个关联模型换行输入">{$row.relationmodel??''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Relationforeignkey')}:</label>
+                            <div>
+                                <textarea id="c-relationforeignkey" class="form-control " rows="5"
+                                    name="row[relationforeignkey]" cols="50"
+                                    placeholder="外键，多个关联模型换行输入">{$row.relationforeignkey??''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Relationprimarykey')}:</label>
+                            <div>
+                                <textarea id="c-relationprimarykey" class="form-control " rows="5"
+                                    name="row[relationprimarykey]" cols="50"
+                                    placeholder="关联表的主键，多个关联模型换行输入">{$row.relationprimarykey??''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Relationcontroller')}:</label>
+                            <div>
+                                <textarea id="c-relationcontroller" class="form-control " rows="5"
+                                    name="row[relationcontroller]" cols="50"
+                                    placeholder="关联模型的控制器路由地址,格式：addonname/controller，多个关联模型换行输入">{$row.relationcontroller??''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Relationmode')}:</label>
+                            <div>
+                                <textarea id="c-relationmode" class="form-control " rows="5" name="row[relationmode]"
+                                    cols="50"
+                                    placeholder="关联模式(belongsto,hasone,hasmany)，多个关联模型换行输入">{$row.relationmode??''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label">{:__('Selectpagefield')}:</label>
+                            <div>
+                                <textarea id="c-selectpagefield" class="form-control " rows="5"
+                                    name="row[selectpagefield]" cols="50"
+                                    placeholder="关联模型，生成下拉框的文本字段(name,nickname,title自动匹配，其他需要指定)，多个关联模型换行输入">{$row.selectpagefield??''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <label class="control-label">{:__('Relationfields')}:</label>
+                            <div>
+                                <textarea id="c-relationfields" class="form-control " rows="5"
+                                    name="row[relationfields]" cols="50"
+                                    placeholder="关联模型，显示的字段，多个关联模型换行输入">{$row.relationfields??''}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--其他可选项-->
+                <div class="tab-pane fade" id="second">
+                    <div class="row">
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Ignorefields')}:</label>
+                            <div>
+                                <input id="c-ignorefields" class="form-control" name="row[ignorefields]" type="text"
+                                    value="{$row.ignorefields??''}" placeholder="多个值用半角`,`分隔">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Setcheckboxsuffix')}:</label>
+                            <div>
+                                <input id="c-setcheckboxsuffix" class="form-control" name="row[setcheckboxsuffix]"
+                                    value="{$row.setcheckboxsuffix??''}" type="text" placeholder="多个值用半角`,`分隔">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Enumradiosuffix')}:</label>
+                            <div>
+                                <input id="c-enumradiosuffix" class="form-control" name="row[enumradiosuffix]"
+                                    type="text" value="{$row.enumradiosuffix??''}" placeholder="多个值用半角`,`分隔">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Imagefield')}:</label>
+                            <div>
+                                <input id="c-imagefield" class="form-control" name="row[imagefield]" type="text"
+                                    value="{$row.imagefield??''}" placeholder="多个值用半角`,`分隔">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Filefield')}:</label>
+                            <div>
+                                <input id="c-filefield" class="form-control" name="row[filefield]" type="text"
+                                    value="{$row.filefield??''}" placeholder="多个值用半角`,`分隔">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Tagsuffix')}:</label>
+                            <div>
+                                <input id="c-tagsuffix" class="form-control" name="row[tagsuffix]" type="text"
+                                    value="{$row.tagsuffix??''}" placeholder="多个值用半角`,`分隔">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Intdatesuffix')}:</label>
+                            <div>
+                                <input id="c-intdatesuffix" class="form-control" name="row[intdatesuffix]" type="text"
+                                    value="{$row.intdatesuffix??''}" placeholder="多个值用半角`,`分隔">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Switchsuffix')}:</label>
+                            <div>
+                                <input id="c-switchsuffix" class="form-control" name="row[switchsuffix]" type="text"
+                                    value="{$row.switchsuffix??''}" placeholder="多个值用半角`,`分隔">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Editorsuffix')}:</label>
+                            <div>
+                                <input id="c-editorsuffix" class="form-control" name="row[editorsuffix]" type="text"
+                                    value="{$row.editorsuffix??''}" placeholder="多个值用半角`,`分隔">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Citysuffix')}:</label>
+                            <div>
+                                <input id="c-citysuffix" class="form-control" name="row[citysuffix]" type="text"
+                                    value="{$row.citysuffix??''}" placeholder="多个值用半角`,`分隔">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Jsonsuffix')}:</label>
+                            <div>
+                                <input id="c-jsonsuffix" class="form-control" name="row[jsonsuffix]" type="text"
+                                    value="{$row.jsonsuffix??''}" placeholder="多个值用半角`,`分隔">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Selectpagesuffix')}:</label>
+                            <div>
+                                <input id="c-selectpagesuffix" class="form-control" name="row[selectpagesuffix]"
+                                    value="{$row.selectpagesuffix??''}" type="text" placeholder="多个值用半角`,`分隔">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Selectpagessuffix')}:</label>
+                            <div>
+                                <input id="c-selectpagessuffix" class="form-control" name="row[selectpagessuffix]"
+                                    value="{$row.selectpagessuffix??''}" type="text" placeholder="多个值用半角`,`分隔">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Sortfield')}:</label>
+                            <div>
+                                <input id="c-sortfield" class="form-control" name="row[sortfield]" type="text"
+                                    value="{$row.sortfield??''}">
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">{:__('Editorclass')}:</label>
+                            <div>
+                                <input id="c-editorclass" class="form-control" name="row[editorclass]" type="text"
+                                    value="{$row.editorclass??''}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

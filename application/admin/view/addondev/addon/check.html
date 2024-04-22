@@ -1,0 +1,67 @@
+<div class="panel panel-default panel-intro">
+    <div class="panel-heading">
+        <h3 class="panel-title">FastAdmin插件开发辅助增强插件</h3>
+    </div>
+    <div class="panel-body">
+        <p class="text-success">
+            看到本页面并不是代表安装失败，而是成功！
+        </p>
+        <p class="text-danger">
+            提示生产环境务必禁用此插件并关闭调试模式
+        </p>
+        <p class="text-warning">
+            为了完美运行，请完成如下设置
+        </p>
+        <table class="table table-bordered">
+            <tr>
+                <th>检测项目</th>
+                <th>正确</th>
+                <th>当前</th>
+                <th>状态</th>
+                <th>描述</th>
+            </tr>
+
+            <tr>
+                <td>app_debug</td>
+                <td>true</td>
+                <td>
+                    {if config('app_debug')}
+                    <span class="text-success">true</span>
+                    {else /}
+                    <span class="text-danger">false</span>
+                    {/if}
+                </td>
+
+                <td>
+                    {if config('app_debug')}
+                    <i class="fa fa-check text-success"></i>
+                    {else /}
+                    <i class="fa fa-times text-danger"></i>
+                    {/if}
+                </td>
+                <td>修改配置文件`.env`，[app]下的debug=true，或修改配置文件`applicatin/config.php`，位置大概在文件的第21行</td>
+            </tr>
+            <tr>
+                <td>addon_pure_mode</td>
+                <td>false</td>
+                <td>
+                    {if config('fastadmin.addon_pure_mode')}
+                    <span class="text-danger">true</span>
+                    {else /}
+                    <span class="text-success">false</span>
+                    {/if}
+                </td>
+                <td>
+                    {if config('fastadmin.addon_pure_mode')}
+                    <i class="fa fa-times text-danger"></i>
+                    {else /}
+                    <i class="fa fa-check text-success"></i>
+                    {/if}
+                </td>
+                <td>修改配置文件`applicatin/config.php`，位置大概在文件的第295行</td>
+            </tr>
+        </table>
+        <div class="text-center"><button type="button" class="btn btn-danger"
+                onclick="window.location.reload();">修改后刷新</button></div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+    
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        <a href="javascript:;" class="btn btn-primary btn-refresh" title="{:__('Refresh')}" ><i class="fa fa-refresh"></i> </a>
+                        <a href="javascript:;" class="btn btn-success btn-add {:$auth->check('addondev/gen/add')?'':'hide'}" title="{:__('Add')}" ><i class="fa fa-plus"></i> {:__('Add')}</a>
+                        <a href="javascript:;" class="btn btn-success btn-edit btn-disabled disabled {:$auth->check('addondev/gen/edit')?'':'hide'}" title="{:__('Edit')}" ><i class="fa fa-pencil"></i> {:__('Edit')}</a>
+                        <a href="javascript:;" class="btn btn-danger btn-del btn-disabled disabled {:$auth->check('addondev/gen/del')?'':'hide'}" title="{:__('Delete')}" ><i class="fa fa-trash"></i> {:__('Delete')}</a>
+                        <a href="{:url('addondev/addon/backup',['addon'=>$Request.get.addon])}"  class="btn btn-warning btn-dialog {:$auth->check('addondev/addon/backup')?'':'hide'}" title="{:__('Backup')}" ><i class="fa fa-save"></i> {:__('Backup')}</a>
+                        <a href="{:url('addondev/addon/recover',['addon'=>$Request.get.addon])}" class="btn btn-danger btn-dialog {:$auth->check('addondev/addon/recover')?'':'hide'}" title="{:__('Recover')}" ><i class="fa fa-database"></i> {:__('Recover')}</a>
+                        <a href="{:url('addondev/addon/exportmenu',['addon'=>$Request.get.addon])}" class="btn btn-primary btn-dialog" title="导出菜单" ><i class="fa fa-external-link"></i> 导出菜单</a>
+
+                    </div>
+                    <table id="table" class="table table-striped table-bordered table-hover table-nowrap"
+                           data-operate-edit="{:$auth->check('addondev/gen/edit')}"
+                           data-operate-del="{:$auth->check('addondev/gen/del')}"
+                           width="100%">
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

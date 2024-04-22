@@ -1,5 +1,4 @@
-define([], function () {
-    require.config({
+require.config({
 	paths: {
 		'addondev-highlight': '../addons/addondev/highlight/highlight.min'
 	},
@@ -43,6 +42,4 @@ require(['jquery', 'addondev-highlight'], function ($, undefined) {
 		parent.Fast.api.open(url, action == 'code' ? '代码预览' : '文件对比');
 	});
 	hljs.highlightAll();
-});
-
 });

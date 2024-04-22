@@ -2,7 +2,14 @@
 
 return [
     'autoload' => false,
-    'hooks' => [],
+    'hooks' => [
+        'upgrade' => [
+            'addondev',
+        ],
+        'app_init' => [
+            'addondev',
+        ],
+    ],
     'route' => [],
     'priority' => [],
     'domain' => '',

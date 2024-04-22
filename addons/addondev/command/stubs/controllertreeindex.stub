@@ -1,0 +1,39 @@
+    /**
+     * 查看
+     */
+    public function index()
+    {
+        //设置过滤方法
+        $this->request->filter(['strip_tags', 'trim']);
+        if (false === $this->request->isAjax()) {
+            return $this->view->fetch();
+        }
+        //如果发送的来源是 Selectpage，则转发到 Selectpage
+        if ($this->request->request('keyField')) {
+            return $this->selectpage();
+        }
+        [$where, $sort, $order, $offset, $limit] = $this->buildparams();
+        $list = $this->model
+            {%relationWithList%}
+            ->where($where)
+            ->order($sort, $order)
+            ->select();
+        foreach ($list as $row) {
+            {%visibleFieldList%}
+            {%relationVisibleFieldList%}
+        }
+        $list = collection($list)->toArray();
+        \fast\Tree::instance()->init($list);
+        $list = \fast\Tree::instance()->getTreeList(\fast\Tree::instance()->getTreeArray(0), {%treeName%});
+        $result = ['total' => count($list), 'rows' => $list];
+        return json($result);
+
+    }
+
+    /**
+     * 添加
+     */
+    public function add(){
+        $this->model->pid = $this->request->param('pid',0);
+        return parent::add();
+    }
