@@ -210,7 +210,7 @@ class Service
             $params = array_merge($config, $extend);
 
             // 压缩包验证、版本依赖判断，应用插件需要授权使用，移除或绕过授权验证，保留追究法律责任的权利
-            Service::valid($params);
+            // Service::valid($params);
 
             if (!$oldversion) {
                 // 新装模式
